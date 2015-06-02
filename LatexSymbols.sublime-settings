@@ -1,7 +1,8 @@
 {
 	"symbol_list" :
 	[
-		{"command": "Insert leftarrow \u2190", "text": "\\leftarrow"},
-		{"command": "Insert leftarrow \u2190", "text": "\\leftarrow"},
+		{"caption": "Insert leftarrow \u2190", "text": "\\leftarrow"},
+		{"caption": "Insert leftarrow \u2190", "text": "\\leftarrow"},
+		{"caption": "Insert uparrow \u2190", "text": "\\leftarrow"},
 	]
 }

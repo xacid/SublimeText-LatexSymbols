@@ -2,11 +2,11 @@
     {
         "caption": "LatexSymbols: Arrows: leftarrow \u2190",
         "command": "insert_symbol",
-        "args": {"name": "\\leftarrow"}
+        "args": {"text": "\\leftarrow"}
     },
     {
         "caption": "LatexSymbols: Arrows: uparrow \u2191",
         "command": "insert_symbol",
-        "args": {"name": "\\uparrow"}
+        "args": {"text": "\\uparrow"}
     },
 ]
