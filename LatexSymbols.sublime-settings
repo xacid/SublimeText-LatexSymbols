@@ -1,8 +1,13 @@
 {
-	"symbol_list" :
+	"symbol_list":
 	[
-		{"caption": "Insert leftarrow \u2190", "text": "\\leftarrow"},
-		{"caption": "Insert leftarrow \u2190", "text": "\\leftarrow"},
-		{"caption": "Insert uparrow \u2190", "text": "\\leftarrow"},
+		{
+			"caption": "LatexSymbols: Arrows: leftarrow \u2190", 
+			"text": "\\leftarrow"
+		},
+		{
+			"caption": "Insert uparrow \u2190", 
+			"text": "\\leftarrow"
+		},
 	]
 }

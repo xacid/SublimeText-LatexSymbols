@@ -9,7 +9,6 @@ import json
 import sublime, sublime_plugin
 
 
-
 class InsertSymbolCommand(sublime_plugin.TextCommand):
 	def run(self, edit, text = ""):
 		view = self.view
@@ -17,6 +16,7 @@ class InsertSymbolCommand(sublime_plugin.TextCommand):
 
 
 def get_settings():
+	print("LatexSymbols get_settings()")
 	setting = sublime.load_settings('LatexSymbols.sublime-settings')
 	sym_list = setting.get('symbol_list', [])
 	cmd_list = []
@@ -26,7 +26,7 @@ def get_settings():
 	# write sym_list to LatexSymbols.sublime-commands
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
 	f = open(commandFilePath, 'w')
-	json.dump(cmd_list, f)
+	json.dump(cmd_list, f, indent=4)
 
 def plugin_loaded():
 	get_settings()
