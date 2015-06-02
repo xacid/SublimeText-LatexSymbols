@@ -1,0 +1,12 @@
+[
+    {
+        "caption": "LatexSymbols: Arrows: leftarrow \u2190",
+        "command": "insert_symbol",
+        "args": {"name": "\\leftarrow"}
+    },
+    {
+        "caption": "LatexSymbols: Arrows: uparrow \u2191",
+        "command": "insert_symbol",
+        "args": {"name": "\\uparrow"}
+    },
+]
