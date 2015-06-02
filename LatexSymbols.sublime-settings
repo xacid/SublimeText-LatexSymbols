@@ -2,12 +2,18 @@
 	"symbol_list":
 	[
 		{
-			"caption": "LatexSymbols: Arrows: leftarrow \u2190", 
-			"text": "\\leftarrow"
-		},
-		{
-			"caption": "Insert uparrow \u2190", 
-			"text": "\\leftarrow"
+			"category": "Arrows",
+			"entries":
+			[
+				["leftarrow \u2190", "\\leftarrow"],
+				["rightarrow \u2192", "\\rightarrow"],
+				["leftrightarrow \u2194", "\\leftrightarrow"],
+				["mapsto \u21A6", "\\mapsto"],
+				["longleftarrow \u27F5", "\\longleftarrow"],
+				["longrightarrow \u27F6", "\\longrightarrow"],
+				["longleftrightarrow \u27F7", "\\longleftrightarrow"],
+				["longmapsto \u27FC", "\\longmapsto"],
+			]
 		},
 	]
 }

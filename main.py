@@ -19,14 +19,23 @@ def get_settings():
 	print("LatexSymbols get_settings()")
 	setting = sublime.load_settings('LatexSymbols.sublime-settings')
 	sym_list = setting.get('symbol_list', [])
-	cmd_list = []
-	for sym in sym_list:
-		cmd = {'caption': sym['caption'], 'command': 'insert_symbol', 'args': {'text': sym['text']}}
-		cmd_list.append(cmd)
+	cmd_list = parse_settings(sym_list, 'LatexSymbols: ')
+	print(cmd_list)
 	# write sym_list to LatexSymbols.sublime-commands
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
 	f = open(commandFilePath, 'w')
 	json.dump(cmd_list, f, indent=4)
+
+def parse_settings(entries, category):
+	ret = []
+	for e in entries:
+		if isinstance(e, list):
+			cmd = {'caption': category + e[0], 'command': 'insert_symbol', 'args': {'text': e[1]}}
+			ret.append(cmd)
+		else:
+			sub_cat = parse_settings(e['entries'], category + e['category'] + ': ')
+			ret.extend(sub_cat)
+	return ret
 
 def plugin_loaded():
 	get_settings()
