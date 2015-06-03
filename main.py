@@ -22,9 +22,15 @@ def get_settings():
 	cmd_list = parse_settings(sym_list, 'LatexSymbols: ')
 	#print(cmd_list)
 	# write sym_list to LatexSymbols.sublime-commands
+	warningMsg = "\
+// DO NOT EDIT!\n\
+// This file is generated from LatexSymbols.sublime-settings automatically.\n\
+// Always edit that settings file.\n"
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
 	f = open(commandFilePath, 'w')
-	json.dump(cmd_list, f, indent=4)
+	f.write(warningMsg)
+	f.write(json.dumps(cmd_list, f, indent=4))
+	f.close()
 
 def parse_settings(entries, category):
 	ret = []
