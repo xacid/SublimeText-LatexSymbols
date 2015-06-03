@@ -2,17 +2,28 @@
 	"symbol_list":
 	[
 		{
-			"category": "Arrows",
+			"category": "Greek",
 			"entries":
 			[
-				["leftarrow \u2190", "\\leftarrow"],
-				["rightarrow \u2192", "\\rightarrow"],
-				["leftrightarrow \u2194", "\\leftrightarrow"],
-				["mapsto \u21A6", "\\mapsto"],
-				["longleftarrow \u27F5", "\\longleftarrow"],
-				["longrightarrow \u27F6", "\\longrightarrow"],
-				["longleftrightarrow \u27F7", "\\longleftrightarrow"],
-				["longmapsto \u27FC", "\\longmapsto"],
+				["\u03B1", "\\alpha"],
+				["\u03B2", "\\beta"],
+				["\u03B3", "\\gamma"],
+				["\u03B4", "\\delta"],
+				["\u03F5", "\\epsilon"],
+			]
+		},
+		{
+			"category": "Arrow",
+			"entries":
+			[
+				["\u2190", "\\leftarrow"],
+				["\u2192", "\\rightarrow"],
+				["\u2194", "\\leftrightarrow"],
+				["\u21A6", "\\mapsto"],
+				["\u27F5", "\\longleftarrow"],
+				["\u27F6", "\\longrightarrow"],
+				["\u27F7", "\\longleftrightarrow"],
+				["\u27FC", "\\longmapsto"],
 			]
 		},
 	]

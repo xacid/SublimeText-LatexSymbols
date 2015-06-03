@@ -16,11 +16,11 @@ class InsertSymbolCommand(sublime_plugin.TextCommand):
 
 
 def get_settings():
-	print("LatexSymbols get_settings()")
+	#print("LatexSymbols get_settings()")
 	setting = sublime.load_settings('LatexSymbols.sublime-settings')
 	sym_list = setting.get('symbol_list', [])
 	cmd_list = parse_settings(sym_list, 'LatexSymbols: ')
-	print(cmd_list)
+	#print(cmd_list)
 	# write sym_list to LatexSymbols.sublime-commands
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
 	f = open(commandFilePath, 'w')
@@ -30,7 +30,10 @@ def parse_settings(entries, category):
 	ret = []
 	for e in entries:
 		if isinstance(e, list):
-			cmd = {'caption': category + e[0], 'command': 'insert_symbol', 'args': {'text': e[1]}}
+			cmd = {
+				'caption': category + e[1] + ' ' + e[0], 
+				'command': 'insert_symbol', 'args': {'text': e[1]}
+			}
 			ret.append(cmd)
 		else:
 			sub_cat = parse_settings(e['entries'], category + e['category'] + ': ')
