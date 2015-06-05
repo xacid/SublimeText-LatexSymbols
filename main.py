@@ -12,6 +12,7 @@ PLUGIN_SETTINGS = PLUGIN + '.sublime-settings'
 PLUGIN_COMMANDS = PLUGIN + '.sublime-commands'
 CATEG_JSON = 'category'
 ENTRI_JSON = 'entries'
+SYMLI_JSON = 'symbol_list'
 SEP = ': '
 
 class InsertSymbolCommand(sublime_plugin.TextCommand):
@@ -28,7 +29,7 @@ def _settingsOnChange():
 	#print("update 'LatexSymbols.sublime-commands'")
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', PLUGIN_COMMANDS)
 	setting = sublime.load_settings(PLUGIN_SETTINGS)
-	sym_list = setting.get('symbol_list', [])
+	sym_list = setting.get(SYMLI_JSON, [])
 	cmd_list = _parseSettings(sym_list, PLUGIN + SEP)
 	#print("write to " + commandFilePath)
 	f = open(commandFilePath, 'w')
