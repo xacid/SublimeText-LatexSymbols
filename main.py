@@ -16,15 +16,13 @@ class InsertSymbolCommand(sublime_plugin.TextCommand):
 def get_settings():
 	#print("update 'LatexSymbols.sublime-commands'")
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
-	settingsFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-settings')
-	if os.path.getmtime(settingsFilePath) > os.path.getmtime(commandFilePath):
-		setting = sublime.load_settings('LatexSymbols.sublime-settings')
-		sym_list = setting.get('symbol_list', [])
-		cmd_list = _parseSettings(sym_list, 'LatexSymbols: ')
-		#print("write to " + commandFilePath)
-		f = open(commandFilePath, 'w')
-		f.write(_toSublimeCommands(cmd_list))
-		f.close()
+	setting = sublime.load_settings('LatexSymbols.sublime-settings')
+	sym_list = setting.get('symbol_list', [])
+	cmd_list = _parseSettings(sym_list, 'LatexSymbols: ')
+	#print("write to " + commandFilePath)
+	f = open(commandFilePath, 'w')
+	f.write(_toSublimeCommands(cmd_list))
+	f.close()
 
 def plugin_loaded():
 	setting = sublime.load_settings('LatexSymbols.sublime-settings')
