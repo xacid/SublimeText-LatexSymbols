@@ -6,7 +6,7 @@ import os
 import json
 import sublime, sublime_plugin
 
-# Global consts
+### Global consts
 PLUGIN = 'LatexSymbols'
 PLUGIN_SETTINGS = PLUGIN + '.sublime-settings'
 PLUGIN_COMMANDS = PLUGIN + '.sublime-commands'
@@ -24,7 +24,7 @@ def plugin_loaded():
 	setting = sublime.load_settings(PLUGIN_SETTINGS)
 	setting.add_on_change(PLUGIN, _settingsOnChange)
 
-
+### Private helpers
 def _settingsOnChange():
 	#print("update 'LatexSymbols.sublime-commands'")
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', PLUGIN_COMMANDS)
@@ -74,29 +74,3 @@ def _toSublimeCommands(cmd_list):
 		}
 		ret.append(cmd)
 	return warningMsg + json.dumps(ret, indent=4)
-
-# Sublime snippet format -- this only works with one snippet
-# <snippet>
-#     <content><![CDATA[\alpha]]></content>
-#     <!-- Optional: Scope the tab trigger will be active in -->
-#     <scope>text.tex</scope>
-#     <!-- Optional: Description to show in the menu -->
-#     <description>My Fancy Snippet &#x03B1;</description>
-# </snippet>
-def _toSublimeSnippets(cmd_list):
-	warningMsg = """<!--
-DO NOT EDIT!
-This file is generated from LatexSymbols.sublime-settings automatically.
-Always edit that settings file.
--->
-"""
-	ret = ""
-	for e in cmd_list:
-		s = """<snippet>
-    <content><![CDATA[""" + e['text'] + """]]></content>
-    <scope>text.tex</scope>
-    <description>""" + e['caption'] + """</description>
-</snippet>
-"""
-		ret += s
-	return warningMsg + ret
