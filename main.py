@@ -1,8 +1,6 @@
-"""
-1. Save settings in *.sublime-settings
-2. Load settings and convert to *.sublime-commands
-3. Invoke commands with InsertSymbol with args.
-"""
+# 1. Save settings in *.sublime-settings
+# 2. Load settings and convert to *.sublime-commands
+# 3. Invoke commands with InsertSymbol with args.
 
 import os
 import json
@@ -16,17 +14,15 @@ class InsertSymbolCommand(sublime_plugin.TextCommand):
 
 
 def get_settings():
-	#print("LatexSymbols get_settings()")
 	setting = sublime.load_settings('LatexSymbols.sublime-settings')
 	sym_list = setting.get('symbol_list', [])
 	cmd_list = _parseSettings(sym_list, 'LatexSymbols: ')
 	#print(cmd_list)
-	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-snippet')
+	# Update if command file is old (add a checking here)
+	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
 	f = open(commandFilePath, 'w')
-	f.write(_toSublimeSnippets(cmd_list))
+	f.write(_toSublimeCommands(cmd_list))
 	f.close()
-
-
 
 def plugin_loaded():
 	get_settings()
@@ -45,18 +41,16 @@ def _parseSettings(entries, category):
 			ret.extend(sub_cat)
 	return ret
 
-
-"""
-[
-    {
-        "command": "insert_symbol", 
-        "caption": "LatexSymbols: Greek: \\alpha \u03b1", 
-        "args": {
-            "text": "\\alpha"
-        }
-    }, 
-]
-"""
+# Sublime command format
+# [
+#     {
+#         "command": "insert_symbol", 
+#         "caption": "LatexSymbols: Greek: \\alpha \u03b1", 
+#         "args": {
+#             "text": "\\alpha"
+#         }
+#     }, 
+# ]
 def _toSublimeCommands(cmd_list):
 	warningMsg = """// DO NOT EDIT!
 // This file is generated from LatexSymbols.sublime-settings automatically.
@@ -72,15 +66,14 @@ def _toSublimeCommands(cmd_list):
 		ret.append(cmd)
 	return warningMsg + json.dumps(ret, indent=4)
 
-"""
-<snippet>
-    <content><![CDATA[\alpha]]></content>
-    <!-- Optional: Scope the tab trigger will be active in -->
-    <scope>text.tex</scope>
-    <!-- Optional: Description to show in the menu -->
-    <description>My Fancy Snippet &#x03B1;</description>
-</snippet>
-"""
+# Sublime snippet format -- this only works with one snippet
+# <snippet>
+#     <content><![CDATA[\alpha]]></content>
+#     <!-- Optional: Scope the tab trigger will be active in -->
+#     <scope>text.tex</scope>
+#     <!-- Optional: Description to show in the menu -->
+#     <description>My Fancy Snippet &#x03B1;</description>
+# </snippet>
 def _toSublimeSnippets(cmd_list):
 	warningMsg = """<!--
 DO NOT EDIT!
