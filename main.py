@@ -19,33 +19,79 @@ def get_settings():
 	#print("LatexSymbols get_settings()")
 	setting = sublime.load_settings('LatexSymbols.sublime-settings')
 	sym_list = setting.get('symbol_list', [])
-	cmd_list = parse_settings(sym_list, 'LatexSymbols: ')
+	cmd_list = _parseSettings(sym_list, 'LatexSymbols: ')
 	#print(cmd_list)
-	# write sym_list to LatexSymbols.sublime-commands
-	warningMsg = "\
-// DO NOT EDIT!\n\
-// This file is generated from LatexSymbols.sublime-settings automatically.\n\
-// Always edit that settings file.\n"
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
 	f = open(commandFilePath, 'w')
-	f.write(warningMsg)
-	f.write(json.dumps(cmd_list, f, indent=4))
+	f.write(_toSublimeCommands(cmd_list))
 	f.close()
 
-def parse_settings(entries, category):
-	ret = []
-	for e in entries:
-		if isinstance(e, list):
-			cmd = {
-				'caption': category + e[1] + ' ' + e[0], 
-				'command': 'insert_symbol', 'args': {'text': e[1]}
-			}
-			ret.append(cmd)
-		else:
-			sub_cat = parse_settings(e['entries'], category + e['category'] + ': ')
-			ret.extend(sub_cat)
-	return ret
+
 
 def plugin_loaded():
 	get_settings()
 
+def _parseSettings(entries, category):
+	ret = []
+	for e in entries:
+		if isinstance(e, list):
+			cmd = {
+				'caption': category + e[1] + ' ' + e[0],
+				'text': e[1]
+			}
+			ret.append(cmd)
+		else:
+			sub_cat = _parseSettings(e['entries'], category + e['category'] + ': ')
+			ret.extend(sub_cat)
+	return ret
+
+
+"""
+[
+    {
+        "command": "insert_symbol", 
+        "caption": "LatexSymbols: Greek: \\alpha \u03b1", 
+        "args": {
+            "text": "\\alpha"
+        }
+    }, 
+]
+"""
+def _toSublimeCommands(cmd_list):
+	warningMsg = """// DO NOT EDIT!
+// This file is generated from LatexSymbols.sublime-settings automatically.
+// Always edit that settings file.
+"""
+	ret = []
+	for e in cmd_list:
+		cmd = {
+			'caption': e['caption'],
+			'command': 'insert_symbol',
+			'args': {'text': e['text']}
+		}
+		ret.append(cmd)
+	return warningMsg + json.dumps(ret, indent=4)
+
+"""
+<snippet>
+    <content><![CDATA[\alpha]]></content>
+    <!-- Optional: Scope the tab trigger will be active in -->
+    <scope>text.tex</scope>
+    <!-- Optional: Description to show in the menu -->
+    <description>My Fancy Snippet &#x03B1;</description>
+</snippet>
+"""
+def _toSublimeSnippets(cmd_list):
+	warningMsg = """// DO NOT EDIT!
+// This file is generated from LatexSymbols.sublime-settings automatically.
+// Always edit that settings file.
+"""
+	ret = []
+	for e in cmd_list:
+		cmd = {
+			'caption': e['caption'],
+			'command': 'insert_symbol',
+			'args': {'text': e['text']}
+		}
+		ret.append(cmd)
+	return warningMsg + json.dumps(ret, indent=4)

@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[\alpha]]></content>
+    <!-- Optional: Scope the tab trigger will be active in -->
+    <scope>text.tex</scope>
+    <!-- Optional: Description to show in the menu -->
+    <description>My Fancy Snippet &#x03B1;</description>
+</snippet>
