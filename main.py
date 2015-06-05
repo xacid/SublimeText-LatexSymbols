@@ -1,32 +1,39 @@
 # 1. Save settings in *.sublime-settings
 # 2. Load settings and convert to *.sublime-commands
-# 3. Invoke commands with InsertSymbol with args.
+# 3. Invoke commands by InsertSymbol with args.
 
 import os
 import json
 import sublime, sublime_plugin
 
+# Global consts
+PLUGIN = 'LatexSymbols'
+PLUGIN_SETTINGS = PLUGIN + '.sublime-settings'
+PLUGIN_COMMANDS = PLUGIN + '.sublime-commands'
+CATEG_JSON = 'category'
+ENTRI_JSON = 'entries'
+SEP = ': '
 
 class InsertSymbolCommand(sublime_plugin.TextCommand):
 	def run(self, edit, text = ""):
 		view = self.view
 		view.insert(edit, view.sel()[0].a, text)
 
+def plugin_loaded():
+	setting = sublime.load_settings(PLUGIN_SETTINGS)
+	setting.add_on_change(PLUGIN, _settingsOnChange)
 
-def get_settings():
+
+def _settingsOnChange():
 	#print("update 'LatexSymbols.sublime-commands'")
-	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
-	setting = sublime.load_settings('LatexSymbols.sublime-settings')
+	commandFilePath = os.path.join(sublime.packages_path(), 'User', PLUGIN_COMMANDS)
+	setting = sublime.load_settings(PLUGIN_SETTINGS)
 	sym_list = setting.get('symbol_list', [])
-	cmd_list = _parseSettings(sym_list, 'LatexSymbols: ')
+	cmd_list = _parseSettings(sym_list, PLUGIN + SEP)
 	#print("write to " + commandFilePath)
 	f = open(commandFilePath, 'w')
 	f.write(_toSublimeCommands(cmd_list))
 	f.close()
-
-def plugin_loaded():
-	setting = sublime.load_settings('LatexSymbols.sublime-settings')
-	setting.add_on_change('LatexSymbols', get_settings)
 
 def _parseSettings(entries, category):
 	ret = []
@@ -38,7 +45,7 @@ def _parseSettings(entries, category):
 			}
 			ret.append(cmd)
 		else:
-			sub_cat = _parseSettings(e['entries'], category + e['category'] + ': ')
+			sub_cat = _parseSettings(e[ENTRI_JSON], category + e[CATEG_JSON] + SEP)
 			ret.extend(sub_cat)
 	return ret
 
