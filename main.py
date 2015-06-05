@@ -18,7 +18,8 @@ def get_settings():
 	sym_list = setting.get('symbol_list', [])
 	cmd_list = _parseSettings(sym_list, 'LatexSymbols: ')
 	#print(cmd_list)
-	# Update if command file is old (add a checking here)
+	# if "${packages}/User/LatexSymbols.sublime-settings" > 'LatexSymbols.sublime-commands'
+	# update 'LatexSymbols.sublime-commands'
 	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
 	f = open(commandFilePath, 'w')
 	f.write(_toSublimeCommands(cmd_list))
