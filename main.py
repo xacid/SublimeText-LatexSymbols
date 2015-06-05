@@ -21,9 +21,9 @@ def get_settings():
 	sym_list = setting.get('symbol_list', [])
 	cmd_list = _parseSettings(sym_list, 'LatexSymbols: ')
 	#print(cmd_list)
-	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-commands')
+	commandFilePath = os.path.join(sublime.packages_path(), 'User', 'LatexSymbols.sublime-snippet')
 	f = open(commandFilePath, 'w')
-	f.write(_toSublimeCommands(cmd_list))
+	f.write(_toSublimeSnippets(cmd_list))
 	f.close()
 
 
@@ -82,16 +82,19 @@ def _toSublimeCommands(cmd_list):
 </snippet>
 """
 def _toSublimeSnippets(cmd_list):
-	warningMsg = """// DO NOT EDIT!
-// This file is generated from LatexSymbols.sublime-settings automatically.
-// Always edit that settings file.
+	warningMsg = """<!--
+DO NOT EDIT!
+This file is generated from LatexSymbols.sublime-settings automatically.
+Always edit that settings file.
+-->
 """
-	ret = []
+	ret = ""
 	for e in cmd_list:
-		cmd = {
-			'caption': e['caption'],
-			'command': 'insert_symbol',
-			'args': {'text': e['text']}
-		}
-		ret.append(cmd)
-	return warningMsg + json.dumps(ret, indent=4)
+		s = """<snippet>
+    <content><![CDATA[""" + e['text'] + """]]></content>
+    <scope>text.tex</scope>
+    <description>""" + e['caption'] + """</description>
+</snippet>
+"""
+		ret += s
+	return warningMsg + ret
