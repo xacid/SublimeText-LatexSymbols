@@ -41,7 +41,7 @@ def _parseSettings(entries, category):
 	for e in entries:
 		if isinstance(e, list):
 			cmd = {
-				'caption': category + e[0] + ' ' + e[1],
+				'caption': category + e[0] + ' ' + e[1], # TODO: working with package
 				'text': e[1]
 			}
 			ret.append(cmd)
