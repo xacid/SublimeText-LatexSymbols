@@ -45,27 +45,27 @@
 					"entries":
 					[
 						["\u0393", "\\Gamma"],
-						["italic \u0393", "\\varGamma"],
+						["italic \u0393", "\\varGamma", "amsmath"],
 						["\u0394", "\\Delta"],
-						["italic \u0394", "\\varDelta"],
+						["italic \u0394", "\\varDelta", "amsmath"],
 						["\u0397", "\\Theta"],
-						["italic \u0397", "\\varTheta"],
+						["italic \u0397", "\\varTheta", "amsmath"],
 						["\u039B", "\\Lambda"],
-						["italic \u039B", "\\varLambda"],
+						["italic \u039B", "\\varLambda", "amsmath"],
 						["\u039E", "\\Xi"],
-						["italic \u039E", "\\varXi"],
+						["italic \u039E", "\\varXi", "amsmath"],
 						["\u03A0", "\\Pi"],
-						["italic \u03A0", "\\varPi"],
+						["italic \u03A0", "\\varPi", "amsmath"],
 						["\u03A3", "\\Sigma"],
-						["italic \u03A3", "\\varSigma"],
+						["italic \u03A3", "\\varSigma", "amsmath"],
 						["\u03D2", "\\Upsilon"],
-						["italic \u03D2", "\\varUpsilon"],
+						["italic \u03D2", "\\varUpsilon", "amsmath"],
 						["\u03A6", "\\Phi"],
-						["italic \u03A6", "\\varPhi"],
+						["italic \u03A6", "\\varPhi", "amsmath"],
 						["\u03A8", "\\Psi"],
-						["italic \u03A8", "\\varPsi"],
+						["italic \u03A8", "\\varPsi", "amsmath"],
 						["\u03A9", "\\Omega"],
-						["italic \u03A9", "\\varOmega"],
+						["italic \u03A9", "\\varOmega", "amsmath"],
 					]
 				},
 			]
@@ -74,15 +74,45 @@
 			"category": "Arrow",
 			"entries":
 			[
-				["\u2190", "\\leftarrow"],
-				["\u2192", "\\rightarrow"],
-				["\u2194", "\\leftrightarrow"],
-				["\u21A6", "\\mapsto"],
-				["\u27F5", "\\longleftarrow"],
-				["\u27F6", "\\longrightarrow"],
-				["\u27F7", "\\longleftrightarrow"],
-				["\u27FC", "\\longmapsto"],
+				{
+					"category": "Single",
+					"entries":
+					[
+						["\u2190", "\\leftarrow"],
+						["\u2192", "\\rightarrow"],
+						["\u2194", "\\leftrightarrow"],
+						["\u21A6", "\\mapsto"],
+						["\u27F5", "\\longleftarrow"],
+						["\u27F6", "\\longrightarrow"],
+						["\u27F7", "\\longleftrightarrow"],
+						["\u27FC", "\\longmapsto"],
+						["\u2193", "\\downarrow"],
+						["\u2195", "\\updownarrow"],
+						["\u2191", "\\uparrow"],
+						["\u2196", "\\nwarrow"],
+						["\u2198", "\\searrow"],
+						["\u2197", "\\nearrow"],
+						["\u2199", "\\swarrow"],
+						["\u2193", "\\textdownarrow", "textcomp"],
+						["\u2191", "\\textuparrow", "textcomp"],
+						["\u2190", "\\textleftarrow", "textcomp"],
+						["\u2192", "\\textrightarrow", "textcomp"],
+						["\u219A", "\\nleftarrow", "amssymb"],
+						["\u21AE", "\\nleftrightarrow", "amssymb"],
+						["\u219B", "\\nrightarrow", "amssymb"],
+						["\u21A9", "\\hookleftarrow"],
+						["\u21AA", "\\hookrightarrow"],
+						["\u219E", "\\twoheadleftarrow", "amssymb"],
+						["\u21A0", "\\twoheadrightarrow", "amssymb"],
+						["\u21A2", "\\leftarrowtail", "amssymb"],
+						["\u21A3", "\\rightarrowtail", "amssymb"],
+					]
+				},
 			]
 		},
 	]
 }
+
+
+
+s
